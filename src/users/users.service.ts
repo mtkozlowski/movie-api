@@ -1,12 +1,19 @@
 import { Injectable } from '@nestjs/common';
 
+export type Role = 'basic' | 'premium';
+
 export type User = {
   id: number;
-  role: 'basic' | 'premium';
+  role: Role;
   name: string;
   username: string;
   password: string;
 };
+
+export enum MoviesAllowedInMonth {
+  basic = 5,
+  premium = Infinity,
+}
 
 @Injectable()
 export class UsersService {
