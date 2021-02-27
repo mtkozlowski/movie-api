@@ -5,7 +5,6 @@ import { MoviesModule } from './movies/movies.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { AuthService } from './auth/auth.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExternalSourceModule } from './external-source/external-source.module';
 

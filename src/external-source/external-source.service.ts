@@ -3,7 +3,6 @@ import {
   HttpService,
   HttpStatus,
   Injectable,
-  NotFoundException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MovieDto } from 'src/dto/movieDto';

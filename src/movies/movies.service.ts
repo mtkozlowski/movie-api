@@ -1,23 +1,18 @@
-import {
-  Injectable,
-  HttpService,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from 'src/entities/movie.entity';
 import { MoviesAllowedInMonth, Role } from 'src/users/users.service';
-import { Connection, Equal, Raw, Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { MovieDto } from '../dto/movieDto';
 
 @Injectable()
 export class MoviesService {
   constructor(
-    private httpService: HttpService,
     private configService: ConfigService,
+    private connection: Connection,
     @InjectRepository(Movie)
     private moviesRepository: Repository<Movie>,
-    private connection: Connection,
   ) {}
 
   private readonly key = this.configService.get<string>('OMBD_API_KEY');
