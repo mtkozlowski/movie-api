@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Movie } from '../models/movie';
+import { MovieDto } from '../dto/movieDto';
 import { MoviesService } from './movies.service';
 
 @Controller('movies')
@@ -22,8 +22,17 @@ export class MoviesController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  async addMovie(@Body('title') title: string): Promise<Movie> {
+  async addMovie(
+    @Body('title') title: string,
+    @Request() req,
+  ): Promise<MovieDto> {
     const movie = await this.movieService.getMovieFromOmdb(title);
+    this.movieService.addMovieToRepository(movie, req.user.userId);
     return movie;
+  }
+
+  @Get('all')
+  async getAllMovies() {
+    return this.movieService.getAllMovies();
   }
 }
