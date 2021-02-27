@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AuthService } from './auth/auth.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ExternalSourceModule } from './external-source/external-source.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     AuthModule,
     UsersModule,
     TypeOrmModule.forRoot(),
+    ExternalSourceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
