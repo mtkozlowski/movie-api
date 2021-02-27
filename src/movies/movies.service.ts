@@ -1,6 +1,6 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Movie } from 'model/movie';
+import { Movie } from '../models/movie';
 
 @Injectable()
 export class MoviesService {
