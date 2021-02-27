@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Movie } from '../models/movie';
 import { MoviesService } from './movies.service';
 
@@ -6,12 +14,13 @@ import { MoviesService } from './movies.service';
 export class MoviesController {
   constructor(private readonly movieService: MoviesService) {}
 
-  //Token from Header
+  @UseGuards(JwtAuthGuard)
   @Get()
-  index(@Query('token') token: string): any {
-    return token;
+  async getMoviesByUser(@Request() req) {
+    return req.user;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   async addMovie(@Body('title') title: string): Promise<Movie> {
     const movie = await this.movieService.getMovieFromOmdb(title);
