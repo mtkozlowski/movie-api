@@ -34,11 +34,15 @@ export class MoviesController {
     @UserId() userId: number,
     @UserRole() userRole: Role,
   ): Promise<MovieDto> {
-    if (!this.moviesService.isUserAllowedToAddNewMovie(userId, userRole)) {
-      throw new UnauthorizedException();
+    if (
+      !(await this.moviesService.isUserAllowedToAddNewMovie(userId, userRole))
+    ) {
+      throw new UnauthorizedException(
+        'You have exceeded maximum number of added movies per month',
+      );
     }
 
-    const existingMovie = await this.moviesService.getUserMovieByTitle(
+    const existingMovie = await this.moviesService.getUserMoviesByTitle(
       title,
       userId,
     );
