@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-export type Role = 'basic' | 'premium';
+import { Role } from '../types/role.type';
 
 export type User = {
   id: number;
