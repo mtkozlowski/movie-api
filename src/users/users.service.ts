@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-
 import { Role } from '../types/role.type';
 
 export type User = {
@@ -9,11 +8,6 @@ export type User = {
   username: string;
   password: string;
 };
-
-export enum MoviesAllowedInMonth {
-  basic = 5,
-  premium = Infinity,
-}
 
 @Injectable()
 export class UsersService {
