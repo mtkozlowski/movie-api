@@ -60,9 +60,4 @@ export class MoviesController {
 
     return `Movie: ${title} has been succesfully saved.`;
   }
-
-  @Get('all')
-  async getAllMovies() {
-    return this.moviesService.getAllMovies();
-  }
 }
