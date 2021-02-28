@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OmdbModule } from './Omdb/omdb.module';
+import { RoleModule } from './role/role.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { OmdbModule } from './Omdb/omdb.module';
     UsersModule,
     TypeOrmModule.forRoot(),
     OmdbModule,
+    RoleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
