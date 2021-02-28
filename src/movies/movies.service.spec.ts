@@ -2,7 +2,7 @@ import { HttpModule } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Movie } from '../entities/movie.entity';
-import { ExternalSourceModule } from '../external-source/external-source.module';
+import { OmdbModule } from '../Omdb/omdb.module';
 import { UsersModule } from '../users/users.module';
 import { MoviesService } from './movies.service';
 
@@ -14,7 +14,7 @@ describe('MoviesService', () => {
       imports: [
         HttpModule,
         TypeOrmModule.forFeature([Movie]),
-        ExternalSourceModule,
+        OmdbModule,
         UsersModule,
       ],
       providers: [MoviesService],

@@ -9,16 +9,16 @@ import {
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserId } from '../decorators/userId.decorator';
 import { UserRole } from '../decorators/userRole.decorator';
-import { ExternalSourceService } from '../external-source/external-source.service';
 import { Role } from '../users/users.service';
 import { MovieDto } from '../dto/movieDto';
+import { OmdbService } from '../Omdb/omdb.service';
 import { MoviesService } from './movies.service';
 
 @Controller('movies')
 export class MoviesController {
   constructor(
+    private readonly omdbService: OmdbService,
     private readonly moviesService: MoviesService,
-    private readonly externalSourceService: ExternalSourceService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -51,9 +51,9 @@ export class MoviesController {
       return existingMovie;
     }
 
-    const movie = await this.externalSourceService.getMovieDetails(title);
     this.moviesService.addMovieToRepository(movie, userId);
     return movie;
+    const movie = await this.omdbService.getMovieDetails(title);
   }
 
   @Get('all')

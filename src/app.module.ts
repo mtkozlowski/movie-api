@@ -5,7 +5,7 @@ import { MoviesModule } from './movies/movies.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ExternalSourceModule } from './external-source/external-source.module';
+import { OmdbModule } from './Omdb/omdb.module';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { ExternalSourceModule } from './external-source/external-source.module';
     AuthModule,
     UsersModule,
     TypeOrmModule.forRoot(),
-    ExternalSourceModule,
+    OmdbModule,
   ],
   controllers: [AppController],
   providers: [AppService],
