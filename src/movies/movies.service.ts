@@ -1,5 +1,4 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from '../entities/movie.entity';
 import { MoviesAllowedInMonth, Role } from '../users/users.service';
@@ -9,7 +8,6 @@ import { MovieDto } from '../dto/movieDto';
 @Injectable()
 export class MoviesService {
   constructor(
-    private configService: ConfigService,
     private connection: Connection,
     @InjectRepository(Movie)
     private moviesRepository: Repository<Movie>,

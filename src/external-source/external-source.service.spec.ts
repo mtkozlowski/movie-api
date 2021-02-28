@@ -2,13 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ExternalSourceService } from './external-source.service';
 import * as validOmdbResponse from '../__mocks__/validOmdbResponse.json';
 import { validOmdbTitle } from '../__mocks__/validOmdbTitle.json';
-import {
-  HttpException,
-  HttpModule,
-  HttpService,
-  HttpStatus,
-} from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { HttpModule, HttpService } from '@nestjs/common';
 import { Observable, Subscriber } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { MovieDto } from '../dto/movieDto';
@@ -19,7 +13,7 @@ describe('ExternalSourceService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [HttpModule, ConfigModule],
+      imports: [HttpModule],
       providers: [ExternalSourceService],
     }).compile();
 
@@ -40,7 +34,7 @@ describe('ExternalSourceService', () => {
       observer.complete();
     });
 
-    jest.spyOn(httpService, 'get').mockImplementation((url: string) => {
+    jest.spyOn(httpService, 'get').mockImplementation(() => {
       return result;
     });
   });

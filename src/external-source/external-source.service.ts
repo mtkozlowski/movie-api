@@ -4,17 +4,15 @@ import {
   HttpStatus,
   Injectable,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { MovieDto } from '../dto/movieDto';
 
 @Injectable()
 export class ExternalSourceService {
-  constructor(
-    private httpService: HttpService,
-    private configService: ConfigService,
-  ) {}
+  constructor(private httpService: HttpService) {
+    this.key = process.env.OMBD_API_KEY;
+  }
 
-  private readonly key = this.configService.get<string>('OMBD_API_KEY');
+  private readonly key: string;
 
   async getMovieDetails(title: string): Promise<MovieDto | any> {
     const url = `http://www.omdbapi.com/?apikey=${this.key}&t=${title}&type=movie`;
