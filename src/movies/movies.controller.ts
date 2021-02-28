@@ -9,16 +9,17 @@ import {
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserId } from '../decorators/userId.decorator';
 import { UserRole } from '../decorators/userRole.decorator';
-import { Role } from '../users/users.service';
-import { MovieDto } from '../dto/movieDto';
 import { OmdbService } from '../Omdb/omdb.service';
+import { Role } from '../types/role.type';
 import { MoviesService } from './movies.service';
+import { RoleService } from 'src/role/role.service';
 
 @Controller('movies')
 export class MoviesController {
   constructor(
     private readonly omdbService: OmdbService,
     private readonly moviesService: MoviesService,
+    private readonly roleService: RoleService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -35,7 +36,7 @@ export class MoviesController {
     @UserRole() userRole: Role,
   ): Promise<MovieDto> {
     if (
-      !(await this.moviesService.isUserAllowedToAddNewMovie(userId, userRole))
+      !(await this.roleService.isUserAllowedToAddNewMovie(userId, userRole))
     ) {
       throw new UnauthorizedException(
         'You have exceeded maximum number of added movies per month',
