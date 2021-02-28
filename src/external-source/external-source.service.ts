@@ -5,7 +5,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { MovieDto } from 'src/dto/movieDto';
+import { MovieDto } from '../dto/movieDto';
 
 @Injectable()
 export class ExternalSourceService {

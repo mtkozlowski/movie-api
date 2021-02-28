@@ -1,8 +1,8 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Movie } from 'src/entities/movie.entity';
-import { MoviesAllowedInMonth, Role } from 'src/users/users.service';
+import { Movie } from '../entities/movie.entity';
+import { MoviesAllowedInMonth, Role } from '../users/users.service';
 import { Connection, Repository } from 'typeorm';
 import { MovieDto } from '../dto/movieDto';
 
@@ -14,8 +14,6 @@ export class MoviesService {
     @InjectRepository(Movie)
     private moviesRepository: Repository<Movie>,
   ) {}
-
-  private readonly key = this.configService.get<string>('OMBD_API_KEY');
 
   async addMovieToRepository(
     movieDto: MovieDto,
@@ -35,14 +33,14 @@ export class MoviesService {
     }
   }
 
-  async getUserMovieByTitle(title: string, userId: number): Promise<any> {
-    const movie = await this.moviesRepository.find({
+  async getUserMoviesByTitle(title: string, userId: number): Promise<any> {
+    const movies = await this.moviesRepository.find({
       where: { title, addedByUserId: userId },
     });
-    if (movie.length === 0) {
+    if (movies.length === 0) {
       return null;
     }
-    return movie;
+    return movies;
   }
 
   async getAllMovies(): Promise<Movie[]> {
