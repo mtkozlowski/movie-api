@@ -1,13 +1,18 @@
 export class MovieDto {
-  constructor(newMovie: any) {
-    this.Title = newMovie.Title;
-    this.Released = new Date(newMovie.Released);
-    this.Genre = newMovie.Genre;
-    this.Directory = newMovie.Director;
+  constructor(
+    title: string,
+    released: string,
+    genre: string,
+    director: string,
+  ) {
+    this.title = title;
+    this.released = new Date(released);
+    this.genre = genre;
+    this.director = director;
   }
 
-  Title: string;
-  Released: Date;
-  Genre: string;
-  Directory: string;
+  title: string;
+  released: Date;
+  genre: string;
+  director: string;
 }

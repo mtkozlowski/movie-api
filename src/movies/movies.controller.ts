@@ -1,9 +1,11 @@
 import {
   Body,
+  ConflictException,
   Controller,
+  ForbiddenException,
   Get,
+  HttpCode,
   Post,
-  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -30,31 +32,33 @@ export class MoviesController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
+  @HttpCode(201)
   async addMovie(
     @Body('title') title: string,
     @UserId() userId: number,
     @UserRole() userRole: Role,
-  ): Promise<MovieDto> {
+  ) {
     if (
       !(await this.roleService.isUserAllowedToAddNewMovie(userId, userRole))
     ) {
-      throw new UnauthorizedException(
-        'You have exceeded maximum number of added movies per month',
+      throw new ForbiddenException(
+        'You have exceeded quota of maximum movies to add per month',
       );
     }
 
-    const existingMovie = await this.moviesService.getUserMoviesByTitle(
+    const isMovieSaved = await this.moviesService.getByTitleForUser(
       title,
       userId,
     );
 
-    if (existingMovie) {
-      return existingMovie;
+    if (isMovieSaved) {
+      throw new ConflictException();
     }
 
-    this.moviesService.addMovieToRepository(movie, userId);
-    return movie;
     const movie = await this.omdbService.getMovieDetails(title);
+    this.moviesService.save(movie, userId);
+
+    return `Movie: ${title} has been succesfully saved.`;
   }
 
   @Get('all')
