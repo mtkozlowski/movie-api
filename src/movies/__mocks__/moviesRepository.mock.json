@@ -1,0 +1,200 @@
+[
+  {
+    "title": "Guardians of the Galaxy Vol. 2",
+    "directory": "James Gunn",
+    "genre": "Action, Adventure, Comedy, Sci-Fi",
+    "released": "2017-05-05T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 1,
+    "addedAt": "2021-02-27T18:23:56.000Z"
+  },
+  {
+    "title": "Kill Bill: Vol. 2",
+    "directory": "Quentin Tarantino",
+    "genre": "Action, Crime, Thriller",
+    "released": "2004-04-16T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 2,
+    "addedAt": "2021-02-27T23:01:18.000Z"
+  },
+  {
+    "title": "Jumanji",
+    "directory": "Joe Johnston",
+    "genre": "Adventure, Comedy, Family, Fantasy",
+    "released": "1995-12-15T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 3,
+    "addedAt": "2021-02-27T23:29:16.000Z"
+  },
+  {
+    "title": "Matrix",
+    "directory": "Kim Harrington",
+    "genre": "Documentary, Sci-Fi",
+    "released": "2020-01-28T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 4,
+    "addedAt": "2021-02-27T23:29:49.000Z"
+  },
+  {
+    "title": "Madagascar",
+    "directory": "Eric Darnell, Tom McGrath",
+    "genre": "Animation, Adventure, Comedy, Family",
+    "released": "2005-05-27T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 5,
+    "addedAt": "2021-02-27T23:30:08.000Z"
+  },
+  {
+    "title": "Teacher",
+    "directory": "Adam Dick",
+    "genre": "Drama",
+    "released": "2019-08-02T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 15,
+    "addedAt": "2021-03-01T07:32:40.000Z"
+  },
+  {
+    "title": "Love Life",
+    "directory": "Reinout Oerlemans",
+    "genre": "Drama, Romance",
+    "released": "2009-11-26T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 17,
+    "addedAt": "2021-03-01T07:37:16.000Z"
+  },
+  {
+    "title": "Palmer",
+    "directory": "Fisher Stevens",
+    "genre": "Drama",
+    "released": "2021-01-29T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 18,
+    "addedAt": "2021-03-01T07:43:55.000Z"
+  },
+  {
+    "title": "Luca",
+    "directory": "Arun Bose",
+    "genre": "Drama, Mystery, Romance",
+    "released": "2019-07-26T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 19,
+    "addedAt": "2021-03-01T07:46:48.000Z"
+  },
+  {
+    "title": "The Goonies",
+    "directory": "Richard Donner",
+    "genre": "Adventure, Comedy, Family",
+    "released": "1985-06-07T00:00:00.000Z",
+    "addedByUserId": 123,
+    "id": 20,
+    "addedAt": "2021-03-01T07:48:04.000Z"
+  },
+  {
+    "title": "Speed",
+    "directory": "Jan de Bont",
+    "genre": "Action, Adventure, Thriller",
+    "released": "1994-06-10T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 6,
+    "addedAt": "2021-02-27T23:38:14.000Z"
+  },
+  {
+    "title": "Better Call Saul: No Picnic",
+    "directory": "Jenn Carroll",
+    "genre": "Short",
+    "released": "2017-06-19T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 7,
+    "addedAt": "2021-02-27T23:38:54.000Z"
+  },
+  {
+    "title": "The Avengers",
+    "directory": "Joss Whedon",
+    "genre": "Action, Adventure, Sci-Fi",
+    "released": "2012-05-04T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 8,
+    "addedAt": "2021-02-27T23:39:06.000Z"
+  },
+  {
+    "title": "Avengers: Age of Ultron",
+    "directory": "Joss Whedon",
+    "genre": "Action, Adventure, Sci-Fi",
+    "released": "2015-05-01T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 9,
+    "addedAt": "2021-02-27T23:39:15.000Z"
+  },
+  {
+    "title": "X-Men",
+    "directory": "Bryan Singer",
+    "genre": "Action, Adventure, Sci-Fi",
+    "released": "2000-07-14T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 10,
+    "addedAt": "2021-02-27T23:39:34.000Z"
+  },
+  {
+    "title": "Superman",
+    "directory": "Richard Donner",
+    "genre": "Action, Adventure, Drama, Sci-Fi",
+    "released": "1978-12-15T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 11,
+    "addedAt": "2021-02-27T23:39:52.000Z"
+  },
+  {
+    "title": "Superman",
+    "directory": "Richard Donner",
+    "genre": "Action, Adventure, Drama, Sci-Fi",
+    "released": "1978-12-15T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 12,
+    "addedAt": "2021-02-28T22:57:07.000Z"
+  },
+  {
+    "title": "X-Men",
+    "directory": "Bryan Singer",
+    "genre": "Action, Adventure, Sci-Fi",
+    "released": "2000-07-14T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 13,
+    "addedAt": "2021-02-28T22:58:00.000Z"
+  },
+  {
+    "title": "Teacher",
+    "directory": "Adam Dick",
+    "genre": "Drama",
+    "released": "2019-08-02T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 14,
+    "addedAt": "2021-03-01T07:32:16.000Z"
+  },
+  {
+    "title": "Love Life",
+    "directory": "Reinout Oerlemans",
+    "genre": "Drama, Romance",
+    "released": "2009-11-26T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 16,
+    "addedAt": "2021-03-01T07:36:21.000Z"
+  },
+  {
+    "title": "Snatch",
+    "directory": "Guy Ritchie",
+    "genre": "Comedy, Crime",
+    "released": "2001-01-19T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 21,
+    "addedAt": "2021-03-01T18:37:14.000Z"
+  },
+  {
+    "title": "Nie ma takiego filmu",
+    "directory": "N/A",
+    "genre": "N/A",
+    "released": "1970-01-01T00:00:00.000Z",
+    "addedByUserId": 434,
+    "id": 22,
+    "addedAt": "2021-03-01T19:58:47.000Z"
+  }
+]
