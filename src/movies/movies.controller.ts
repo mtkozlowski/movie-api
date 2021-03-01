@@ -2,7 +2,6 @@ import {
   Body,
   ConflictException,
   Controller,
-  ForbiddenException,
   Get,
   HttpCode,
   Post,
@@ -10,18 +9,15 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserId } from '../decorators/userId.decorator';
-import { UserRole } from '../decorators/userRole.decorator';
 import { OmdbService } from '../Omdb/omdb.service';
-import { Role } from '../types/role.type';
 import { MoviesService } from './movies.service';
-import { RoleService } from 'src/role/role.service';
+import { RoleGuard } from 'src/role/role.guards';
 
 @Controller('movies')
 export class MoviesController {
   constructor(
     private readonly omdbService: OmdbService,
     private readonly moviesService: MoviesService,
-    private readonly roleService: RoleService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -31,33 +27,18 @@ export class MoviesController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @UseGuards(RoleGuard)
   @Post()
   @HttpCode(201)
-  async addMovie(
-    @Body('title') title: string,
-    @UserId() userId: number,
-    @UserRole() userRole: Role,
-  ) {
-    if (
-      !(await this.roleService.isUserAllowedToAddNewMovie(userId, userRole))
-    ) {
-      throw new ForbiddenException(
-        'You have exceeded quota of maximum movies to add per month',
-      );
-    }
-
-    const isMovieSaved = await this.moviesService.getByTitleForUser(
-      title,
-      userId,
-    );
-
-    if (isMovieSaved) {
+  /* In future can also return header Location to resource */
+  async addMovie(@Body('title') title: string, @UserId() userId: number) {
+    const movieExists = await this.moviesService.exists(title, userId);
+    if (movieExists) {
       throw new ConflictException();
     }
 
     const movie = await this.omdbService.getMovieDetails(title);
     this.moviesService.save(movie, userId);
-
     return `Movie: ${title} has been succesfully saved.`;
   }
 }

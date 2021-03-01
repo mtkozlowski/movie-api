@@ -27,7 +27,7 @@ export class MoviesService {
     }
   }
 
-  async getByTitleForUser(title: string, userId: number): Promise<boolean> {
+  async exists(title: string, userId: number): Promise<boolean> {
     const movie = await this.connection
       .getRepository(Movie)
       .createQueryBuilder('movie')
@@ -35,7 +35,7 @@ export class MoviesService {
       .andWhere('addedByUserId =  :addedByUserId', { addedByUserId: userId })
       .getOne();
 
-    return movie.title === '';
+    return movie !== null && typeof movie !== 'undefined';
   }
 
   async getMovieCountInCurrentMonth(userId: number): Promise<number> {
