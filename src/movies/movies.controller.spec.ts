@@ -1,39 +1,70 @@
-import { JwtModule } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { MoviesRepositoryModule } from '../movies-repository/movies-repository.module';
-import { OmdbModule } from '../Omdb/omdb.module';
+import { Movie } from '../entities/movie.entity';
+import { OmdbService } from '../Omdb/omdb.service';
+import { RoleService } from '../role/role.service';
 import { MoviesController } from './movies.controller';
 import { MoviesService } from './movies.service';
 import * as moviesRepository from './__mocks__/moviesRepository.mock.json';
 
 describe('MoviesController', () => {
   let controller: MoviesController;
-  let provider: MoviesService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        JwtModule.registerAsync({
-          useFactory: async () => ({
-            secret: process.env.JWT_SECRET,
-          }),
-        }),
-        OmdbModule,
-        MoviesRepositoryModule,
-      ],
       controllers: [MoviesController],
       providers: [
         {
+          provide: RoleService,
+          useValue: {
+            isUserAllowedToAddNewMovie: jest.fn((userId, userRole) => true),
+          },
+        },
+        {
+          provide: JwtService,
+          useValue: {
+            verify: jest.fn(() => ({
+              userId: 123,
+              userRole: 'basic',
+            })),
+          },
+        },
+        {
+          provide: OmdbService,
+          useValue: {
+            getMovieDetails: jest.fn((title) => ({
+              title,
+              released: new Date(Date.now()),
+              director: 'director',
+              genre: 'action',
+            })),
+          },
+        },
+        {
           provide: MoviesService,
           useValue: {
-            getMoviesByUser: jest.fn(),
+            getMoviesByUser: jest.fn((userId: number) => {
+              return moviesRepository.filter(
+                (movie) => movie.addedByUserId === userId,
+              );
+            }),
+            save: jest.fn(
+              (movie: any, userId: number) =>
+                new Movie(
+                  movie.title,
+                  movie.directory,
+                  movie.genre,
+                  movie.released,
+                  userId,
+                ),
+            ),
+            exists: jest.fn(() => false),
           },
         },
       ],
     }).compile();
 
     controller = module.get<MoviesController>(MoviesController);
-    provider = module.get<MoviesService>(MoviesService);
   });
 
   it('should be defined', () => {
