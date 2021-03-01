@@ -5,7 +5,7 @@ import { Movie } from '../entities/movie.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OmdbModule } from '../Omdb/omdb.module';
 import { UsersModule } from '../users/users.module';
-import { RoleModule } from 'src/role/role.module';
+import { RoleModule } from '../role/role.module';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({

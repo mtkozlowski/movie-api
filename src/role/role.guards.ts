@@ -6,7 +6,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Role } from 'src/types/role.type';
+import { Role } from '../types/role.type';
 import { RoleService } from './role.service';
 
 @Injectable()

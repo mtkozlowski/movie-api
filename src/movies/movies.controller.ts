@@ -11,7 +11,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserId } from '../decorators/userId.decorator';
 import { OmdbService } from '../Omdb/omdb.service';
 import { MoviesService } from './movies.service';
-import { RoleGuard } from 'src/role/role.guards';
+import { RoleGuard } from '../role/role.guards';
 
 @Controller('movies')
 export class MoviesController {

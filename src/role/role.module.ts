@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Movie } from 'src/entities/movie.entity';
+import { Movie } from '../entities/movie.entity';
 import { RoleService } from './role.service';
 
 @Global()

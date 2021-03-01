@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
-import { Movie } from 'src/entities/movie.entity';
+import { Movie } from '../entities/movie.entity';
 import { Connection } from 'typeorm';
 import { MoviesService } from '../movies/movies.service';
 import { Role } from '../types/role.type';
