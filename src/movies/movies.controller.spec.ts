@@ -1,7 +1,10 @@
+import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Movie } from '../entities/movie.entity';
+import { MoviesRepositoryModule } from '../movies-repository/movies-repository.module';
+import { OmdbModule } from '../Omdb/omdb.module';
 import { MoviesController } from './movies.controller';
 import { MoviesService } from './movies.service';
+import * as moviesRepository from './__mocks__/moviesRepository.mock.json';
 
 describe('MoviesController', () => {
   let controller: MoviesController;
@@ -9,22 +12,31 @@ describe('MoviesController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        JwtModule.registerAsync({
+          useFactory: async () => ({
+            secret: process.env.JWT_SECRET,
+          }),
+        }),
+        OmdbModule,
+        MoviesRepositoryModule,
+      ],
       controllers: [MoviesController],
-      providers: [MoviesService],
+      providers: [
+        {
+          provide: MoviesService,
+          useValue: {
+            getMoviesByUser: jest.fn(),
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<MoviesController>(MoviesController);
     provider = module.get<MoviesService>(MoviesService);
   });
 
-  describe('findAll', () => {
-    it('should return array of movies', async () => {
-      const result = [new Movie()];
-      jest
-        .spyOn(provider, 'getMoviesByUser')
-        .mockImplementation(async (id) => result);
-
-      expect(await controller.getMoviesByUser(1)).toBe(result);
-    });
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
   });
 });
