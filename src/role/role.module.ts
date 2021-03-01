@@ -1,19 +1,18 @@
 import { Global, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Movie } from '../entities/movie.entity';
+import { MoviesRepositoryModule } from 'src/movies-repository/movies-repository.module';
 import { RoleService } from './role.service';
 
 @Global()
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Movie]),
     JwtModule.registerAsync({
       useFactory: async () => ({
         secret: process.env.JWT_SECRET,
         signOptions: { expiresIn: 30 * 60 },
       }),
     }),
+    MoviesRepositoryModule,
   ],
   providers: [RoleService],
   exports: [RoleService],

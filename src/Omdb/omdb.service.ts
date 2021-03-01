@@ -15,18 +15,18 @@ export class OmdbService {
     return `${this.omdbHost}/?apikey=${this.key}&t=${title}&type=movie`;
   }
 
-  async getMovieDetails(title: string): Promise<MovieDto> {
-    const url = this.getUrl(title);
+  async getMovieDetails(searchTitle: string): Promise<MovieDto> {
+    const url = this.getUrl(searchTitle);
     try {
       const { data } = await this.httpService.get(url).toPromise();
       const {
-        Title: title,
+        Title: title = searchTitle,
         Released: released,
         Genre: genre,
         Director: director,
       } = data;
-      const movie = new MovieDto(title, released, genre, director);
-      return movie;
+      const movieDto = new MovieDto(title, released, genre, director);
+      return movieDto;
     } catch (error) {
       throw new Error(error);
     }

@@ -37,8 +37,8 @@ export class MoviesController {
       throw new ConflictException();
     }
 
-    const movie = await this.omdbService.getMovieDetails(title);
-    this.moviesService.save(movie, userId);
-    return `Movie: ${title} has been succesfully saved.`;
+    const movieDto = await this.omdbService.getMovieDetails(title);
+    const savedMovie = await this.moviesService.save(movieDto, userId);
+    return `Movie: ${savedMovie.title} has been succesfully saved.`;
   }
 }
