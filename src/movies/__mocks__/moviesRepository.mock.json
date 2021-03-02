@@ -1,7 +1,7 @@
 [
   {
     "title": "Guardians of the Galaxy Vol. 2",
-    "directory": "James Gunn",
+    "director": "James Gunn",
     "genre": "Action, Adventure, Comedy, Sci-Fi",
     "released": "2017-05-05T00:00:00.000Z",
     "addedByUserId": 123,
@@ -10,7 +10,7 @@
   },
   {
     "title": "Kill Bill: Vol. 2",
-    "directory": "Quentin Tarantino",
+    "director": "Quentin Tarantino",
     "genre": "Action, Crime, Thriller",
     "released": "2004-04-16T00:00:00.000Z",
     "addedByUserId": 123,
@@ -19,7 +19,7 @@
   },
   {
     "title": "Jumanji",
-    "directory": "Joe Johnston",
+    "director": "Joe Johnston",
     "genre": "Adventure, Comedy, Family, Fantasy",
     "released": "1995-12-15T00:00:00.000Z",
     "addedByUserId": 123,
@@ -28,7 +28,7 @@
   },
   {
     "title": "Matrix",
-    "directory": "Kim Harrington",
+    "director": "Kim Harrington",
     "genre": "Documentary, Sci-Fi",
     "released": "2020-01-28T00:00:00.000Z",
     "addedByUserId": 123,
@@ -37,7 +37,7 @@
   },
   {
     "title": "Madagascar",
-    "directory": "Eric Darnell, Tom McGrath",
+    "director": "Eric Darnell, Tom McGrath",
     "genre": "Animation, Adventure, Comedy, Family",
     "released": "2005-05-27T00:00:00.000Z",
     "addedByUserId": 123,
@@ -46,7 +46,7 @@
   },
   {
     "title": "Teacher",
-    "directory": "Adam Dick",
+    "director": "Adam Dick",
     "genre": "Drama",
     "released": "2019-08-02T00:00:00.000Z",
     "addedByUserId": 123,
@@ -55,7 +55,7 @@
   },
   {
     "title": "Love Life",
-    "directory": "Reinout Oerlemans",
+    "director": "Reinout Oerlemans",
     "genre": "Drama, Romance",
     "released": "2009-11-26T00:00:00.000Z",
     "addedByUserId": 123,
@@ -64,7 +64,7 @@
   },
   {
     "title": "Palmer",
-    "directory": "Fisher Stevens",
+    "director": "Fisher Stevens",
     "genre": "Drama",
     "released": "2021-01-29T00:00:00.000Z",
     "addedByUserId": 123,
@@ -73,7 +73,7 @@
   },
   {
     "title": "Luca",
-    "directory": "Arun Bose",
+    "director": "Arun Bose",
     "genre": "Drama, Mystery, Romance",
     "released": "2019-07-26T00:00:00.000Z",
     "addedByUserId": 123,
@@ -82,7 +82,7 @@
   },
   {
     "title": "The Goonies",
-    "directory": "Richard Donner",
+    "director": "Richard Donner",
     "genre": "Adventure, Comedy, Family",
     "released": "1985-06-07T00:00:00.000Z",
     "addedByUserId": 123,
@@ -91,7 +91,7 @@
   },
   {
     "title": "Speed",
-    "directory": "Jan de Bont",
+    "director": "Jan de Bont",
     "genre": "Action, Adventure, Thriller",
     "released": "1994-06-10T00:00:00.000Z",
     "addedByUserId": 434,
@@ -100,7 +100,7 @@
   },
   {
     "title": "Better Call Saul: No Picnic",
-    "directory": "Jenn Carroll",
+    "director": "Jenn Carroll",
     "genre": "Short",
     "released": "2017-06-19T00:00:00.000Z",
     "addedByUserId": 434,
@@ -109,7 +109,7 @@
   },
   {
     "title": "The Avengers",
-    "directory": "Joss Whedon",
+    "director": "Joss Whedon",
     "genre": "Action, Adventure, Sci-Fi",
     "released": "2012-05-04T00:00:00.000Z",
     "addedByUserId": 434,
@@ -118,7 +118,7 @@
   },
   {
     "title": "Avengers: Age of Ultron",
-    "directory": "Joss Whedon",
+    "director": "Joss Whedon",
     "genre": "Action, Adventure, Sci-Fi",
     "released": "2015-05-01T00:00:00.000Z",
     "addedByUserId": 434,
@@ -127,7 +127,7 @@
   },
   {
     "title": "X-Men",
-    "directory": "Bryan Singer",
+    "director": "Bryan Singer",
     "genre": "Action, Adventure, Sci-Fi",
     "released": "2000-07-14T00:00:00.000Z",
     "addedByUserId": 434,
@@ -136,7 +136,7 @@
   },
   {
     "title": "Superman",
-    "directory": "Richard Donner",
+    "director": "Richard Donner",
     "genre": "Action, Adventure, Drama, Sci-Fi",
     "released": "1978-12-15T00:00:00.000Z",
     "addedByUserId": 434,
@@ -145,7 +145,7 @@
   },
   {
     "title": "Superman",
-    "directory": "Richard Donner",
+    "director": "Richard Donner",
     "genre": "Action, Adventure, Drama, Sci-Fi",
     "released": "1978-12-15T00:00:00.000Z",
     "addedByUserId": 434,
@@ -154,7 +154,7 @@
   },
   {
     "title": "X-Men",
-    "directory": "Bryan Singer",
+    "director": "Bryan Singer",
     "genre": "Action, Adventure, Sci-Fi",
     "released": "2000-07-14T00:00:00.000Z",
     "addedByUserId": 434,
@@ -163,7 +163,7 @@
   },
   {
     "title": "Teacher",
-    "directory": "Adam Dick",
+    "director": "Adam Dick",
     "genre": "Drama",
     "released": "2019-08-02T00:00:00.000Z",
     "addedByUserId": 434,
@@ -172,7 +172,7 @@
   },
   {
     "title": "Love Life",
-    "directory": "Reinout Oerlemans",
+    "director": "Reinout Oerlemans",
     "genre": "Drama, Romance",
     "released": "2009-11-26T00:00:00.000Z",
     "addedByUserId": 434,
@@ -181,7 +181,7 @@
   },
   {
     "title": "Snatch",
-    "directory": "Guy Ritchie",
+    "director": "Guy Ritchie",
     "genre": "Comedy, Crime",
     "released": "2001-01-19T00:00:00.000Z",
     "addedByUserId": 434,
@@ -190,7 +190,7 @@
   },
   {
     "title": "Nie ma takiego filmu",
-    "directory": "N/A",
+    "director": "N/A",
     "genre": "N/A",
     "released": "1970-01-01T00:00:00.000Z",
     "addedByUserId": 434,

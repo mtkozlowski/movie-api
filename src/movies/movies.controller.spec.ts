@@ -1,11 +1,14 @@
-import { JwtService } from '@nestjs/jwt';
+import { ConflictException, HttpCode } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Movie } from '../entities/movie.entity';
-import { OmdbService } from '../Omdb/omdb.service';
-import { RoleService } from '../role/role.service';
 import { MoviesController } from './movies.controller';
-import { MoviesService } from './movies.service';
+import { movieControllerMockedProviders } from './__mocks__/movie.controller.mock';
 import * as moviesRepository from './__mocks__/moviesRepository.mock.json';
+
+const userId = 123;
+const usersMovie = moviesRepository.filter(
+  (movie) => movie.addedByUserId === userId,
+);
+const movieTitle = 'Reservoir dogs';
 
 describe('MoviesController', () => {
   let controller: MoviesController;
@@ -13,55 +16,7 @@ describe('MoviesController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [MoviesController],
-      providers: [
-        {
-          provide: RoleService,
-          useValue: {
-            isUserAllowedToAddNewMovie: jest.fn((userId, userRole) => true),
-          },
-        },
-        {
-          provide: JwtService,
-          useValue: {
-            verify: jest.fn(() => ({
-              userId: 123,
-              userRole: 'basic',
-            })),
-          },
-        },
-        {
-          provide: OmdbService,
-          useValue: {
-            getMovieDetails: jest.fn((title) => ({
-              title,
-              released: new Date(Date.now()),
-              director: 'director',
-              genre: 'action',
-            })),
-          },
-        },
-        {
-          provide: MoviesService,
-          useValue: {
-            getMoviesByUser: jest.fn((userId: number) => {
-              return moviesRepository.filter(
-                (movie) => movie.addedByUserId === userId,
-              );
-            }),
-            save: jest.fn(
-              (movie: any, userId: number) =>
-                new Movie(
-                  movie.title,
-                  movie.directory,
-                  movie.genre,
-                  movie.released,
-                  userId,
-                ),
-            ),
-            exists: jest.fn(() => false),
-          },
-        },
-      ],
+      providers: movieControllerMockedProviders,
     }).compile();
 
     controller = module.get<MoviesController>(MoviesController);
@@ -69,5 +24,31 @@ describe('MoviesController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  describe('getMoviesByUser', () => {
+    it('should return an array of user specific movies', async () => {
+      await expect(controller.getMoviesByUser(userId)).resolves.toEqual(
+        usersMovie,
+      );
+    });
+  });
+
+  describe('addMovie', () => {
+    it('should add a new movie and return success message', async () => {
+      const movieCount = moviesRepository.length;
+      await expect(controller.addMovie(movieTitle, userId)).resolves.toEqual(
+        `Movie: ${movieTitle} has been succesfully saved.`,
+      );
+      expect(moviesRepository.length).toEqual(movieCount + 1);
+    });
+
+    it('should return the new Conflict Exception and quit', async () => {
+      const movieCount = moviesRepository.length;
+      await expect(
+        controller.addMovie('Kill Bill: Vol. 2', userId),
+      ).rejects.toThrowError(ConflictException);
+      expect(moviesRepository.length).toEqual(movieCount);
+    });
   });
 });
