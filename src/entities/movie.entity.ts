@@ -10,7 +10,7 @@ export class Movie {
     userId: number,
   ) {
     this.title = title;
-    this.directory = directory;
+    this.director = directory;
     this.genre = genre;
     this.released = released;
     this.addedByUserId = userId;
@@ -28,7 +28,7 @@ export class Movie {
   genre: string;
 
   @Column()
-  directory: string;
+  director: string;
 
   @Column()
   addedByUserId: number;
