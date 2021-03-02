@@ -1,30 +1,15 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Movie API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### NestJS & MySQL Dockerized Application
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![Docker Image Action badge](https://github.com/mtkozlowski/movie-api/actions/workflows/docker-image.yml/badge.svg)
+![Node CI Action badge](https://github.com/mtkozlowski/movie-api/actions/workflows/node.js.yml/badge.svg)
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This repository contains a simple NestJS-based Movie API application, which allows authorized users to add new movies to its repository.
+
+Movie API works with MySQL database and they can be both run in Docker network.
 
 ## Installation
 
@@ -32,42 +17,103 @@
 $ npm install
 ```
 
+## Before running the app
+
+Before running the app, make sure you have fullfilled following requirements:
+
+- have `docker` and `docker-compose` installed
+- have obtained free OMDb API key [here](http://www.omdbapi.com)
+- have created `.env` file with following variables being set:
+  - APP_PORT
+  - OMBD_API_KEY
+  - OMBD_HOST (which should be equal to: `http://www.omdbapi.com`)
+  - JWT_SECRET
+
 ## Running the app
 
+Once mentioned required are met, you can run from root dir following command:
+
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker-compose up -d
 ```
 
+to start the application.
+
+To stop it run:
+
+```
+docker-compose down
+```
+
+## Usage
+
+While app is running you can execute following requests:
+
+### Login
+
+For `basic` user
+
+```bash
+curl --location --request POST 'http://localhost:3000/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "basic-thomas",
+    "password": "sR-_pcoow-27-6PAwCD8"
+}'
+```
+
+For `premium` user:
+
+```bash
+curl --location --request POST 'http://localhost:3000/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "premium-jim",
+    "password": "GBLtTyq3E_UNjFnpo9m6"
+}'
+```
+
+Received token use in Authorization Header with each further API call.
+
+### GET `/movies`
+
+Assuming the app is listening on port `3000`, you can call the API to retrieve user's movies:
+
+```bash
+curl --location --request GET 'http://localhost:3000/movies' \
+--header 'Authorization: Bearer AUTH_TOKEN'
+```
+
+### POST `/movies`
+
+By calling `/movies` API with movie title in request body, you can add a new movie to users list. However, `basic` user is restricted to only be able to add 5 new movies per month. `Premium` user is not limited.
+
+```bash
+curl --location --request POST 'http://localhost:3000/movies' \
+--header 'Authorization: Bearer AUTH_TOKEN' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title": "Reservoir dogs"
+}'
+```
+
+If you try to add a movie that already exists on your list, you should expect `ConflictException`.
+
 ## Test
+
+![Node CI Action badge](https://github.com/mtkozlowski/movie-api/actions/workflows/node.js.yml/badge.svg)
 
 ```bash
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Author - Mateusz Kozłowski
+- Website - [https://codeforheaven.com](https://codeforheaven.com/)
+- Twitter - [@mtkozlowski](https://twitter.com/mtkozlowski)
