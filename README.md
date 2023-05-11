@@ -7,14 +7,15 @@
 
 ## Description
 
-This repository contains a simple NestJS-based Movie API application, which allows authorized users to add new movies to its repository.
+This repository contains a simple NestJS-based Movie API application, which allows authorized users to add new movies to
+its repository.
 
 Movie API works with MySQL database and they can be both run in Docker network.
 
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
 ```
 
 ## Before running the app
@@ -24,10 +25,10 @@ Before running the app, make sure you have fullfilled following requirements:
 - have `docker` and `docker-compose` installed
 - have obtained free OMDb API key [here](http://www.omdbapi.com)
 - have created `.env` file with following variables being set:
-  - APP_PORT
-  - OMBD_API_KEY
-  - OMBD_HOST (which should be equal to: `http://www.omdbapi.com`)
-  - JWT_SECRET
+    - APP_PORT
+    - OMBD_API_KEY
+    - OMBD_HOST (which should be equal to: `http://www.omdbapi.com`)
+    - JWT_SECRET
 
 ## Running the app
 
@@ -86,7 +87,8 @@ curl --location --request GET 'http://localhost:3000/movies' \
 
 ### POST `/movies`
 
-By calling `/movies` API with movie title in request body, you can add a new movie to users list. However, `basic` user is restricted to only be able to add 5 new movies per month. `Premium` user is not limited.
+By calling `/movies` API with movie title in request body, you can add a new movie to users list. However, `basic` user
+is restricted to only be able to add 5 new movies per month. `Premium` user is not limited.
 
 ```bash
 curl --location --request POST 'http://localhost:3000/movies' \
