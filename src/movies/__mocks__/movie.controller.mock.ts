@@ -3,7 +3,7 @@ import { MovieDto } from '../../dto/movieDto';
 import { Movie } from '../../entities/movie.entity';
 import { OmdbService } from '../../Omdb/omdb.service';
 import { RoleService } from '../../role/role.service';
-import { MoviesService } from '../movies.service';
+import { MovieService } from '../movie.service';
 import * as moviesRepository from './moviesRepository.mock.json';
 
 const director = 'Quentin Tarantino';
@@ -41,7 +41,7 @@ export const movieControllerMockedProviders = [
     },
   },
   {
-    provide: MoviesService,
+    provide: MovieService,
     useValue: {
       getMoviesByUser: jest.fn((userId: number) => {
         return moviesRepository.filter(

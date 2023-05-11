@@ -1,12 +1,11 @@
 import {
-  Injectable,
   CanActivate,
   ExecutionContext,
-  Inject,
   ForbiddenException,
+  Inject,
+  Injectable,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Role } from '../types/role.type';
 import { RoleService } from './role.service';
 
 @Injectable()
@@ -17,19 +16,15 @@ export class RoleGuard implements CanActivate {
     @Inject('JwtService')
     readonly jwtService: JwtService,
   ) {}
+
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const Authorization = request.get('Authorization');
     if (Authorization) {
       const token = Authorization.replace('Bearer ', '');
-      const { userId, role: userRole } = this.jwtService.verify(token) as {
-        userId: number;
-        role: Role;
-      };
-      const isUserAllowedToAddNewMovie = await this.roleService.isUserAllowedToAddNewMovie(
-        userId,
-        userRole,
-      );
+      const { userId, role } = this.jwtService.verify(token);
+      const isUserAllowedToAddNewMovie =
+        await this.roleService.isUserAllowedToAddNewMovie(userId, role);
       if (isUserAllowedToAddNewMovie) {
         return true;
       } else {
@@ -38,5 +33,6 @@ export class RoleGuard implements CanActivate {
         );
       }
     }
+    return true;
   }
 }

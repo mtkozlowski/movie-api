@@ -1,4 +1,4 @@
-import { ConflictException, HttpCode } from '@nestjs/common';
+import { ConflictException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { MoviesController } from './movies.controller';
 import { movieControllerMockedProviders } from './__mocks__/movie.controller.mock';
@@ -38,7 +38,7 @@ describe('MoviesController', () => {
     it('should add a new movie and return success message', async () => {
       const movieCount = moviesRepository.length;
       await expect(controller.addMovie(movieTitle, userId)).resolves.toEqual(
-        `Movie: ${movieTitle} has been succesfully saved.`,
+        `Movie: ${movieTitle} has been successfully saved.`,
       );
       expect(moviesRepository.length).toEqual(movieCount + 1);
     });

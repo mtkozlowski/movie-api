@@ -10,27 +10,24 @@ import {
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserId } from '../decorators/userId.decorator';
 import { OmdbService } from '../Omdb/omdb.service';
-import { MoviesService } from './movies.service';
-import { RoleGuard } from '../role/role.guards';
+import { MovieService } from './movie.service';
 
 @Controller('movies')
 export class MoviesController {
   constructor(
     private readonly omdbService: OmdbService,
-    private readonly moviesService: MoviesService,
+    private readonly moviesService: MovieService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
+  @UseGuards(JwtAuthGuard)
   async getMoviesByUser(@UserId() userId: number) {
     return this.moviesService.getMoviesByUser(userId);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @UseGuards(RoleGuard)
   @Post()
+  @UseGuards(JwtAuthGuard)
   @HttpCode(201)
-  /* In future can also return header Location to resource */
   async addMovie(@Body('title') title: string, @UserId() userId: number) {
     const movieExists = await this.moviesService.exists(title, userId);
     if (movieExists) {
