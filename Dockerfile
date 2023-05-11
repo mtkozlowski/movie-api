@@ -1,9 +1,9 @@
-FROM node:12.11.0
+FROM node:19.9.0
 
 WORKDIR /app
 
 COPY ./package.json ./yarn.lock ./
-RUN npm install
+RUN yarn
 
 RUN mkdir ./src
 COPY ./src ./src
